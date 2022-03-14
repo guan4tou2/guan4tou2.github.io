@@ -73,8 +73,7 @@
 
   <main class="px-3">
     <h1>就只是一個罐頭</h1>
-    <p class="lead"></p>
-    <div id=”typing”></div>
+    <p class="lead"><span id="example-selector"></span></p>
     <p class="lead">
       <a href="https://github.com/guan4tou2" class="btn btn-lg btn-secondary fw-bold border-white bg-white">看Github</a>
     </p>
@@ -86,20 +85,25 @@
 </div>
 
     <script src="assets/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-var str = '內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容';
-var i = 0;
-function typing(){
-var divTyping = document.getElementById('typing');
-if (i <= str.length) {
-divTyping.innerHTML = str.slice(0, i  )   '_';
-setTimeout('typing()', 200);
-}
-else{
-divTyping.innerHTML = str;
-}
-}
-typing();
-</script>
+    <script src="dist/autotyping.min.js"></script>
+    <script type="text/javascript" src="dist/text.json"></script>
+    <script> 
+      var mydata = JSON.parse(data);
+      const myText = new AutoTyping({
+      id: 'example-selector',                  
+      typeText: ['就只是一個罐頭','前端好難'], 
+      textColor: '#fff',             
+      typeSpeed: 50,                    
+      typeRandom: true,                 
+      typeDelay: 200,                   
+      cursor: '|',                      
+      cursorColor: '#fff',           
+      cursorSpeed: 200,                 
+      deleteSpeed: 50,                  
+      deleteDelay: 2000,                
+      typeInfinity: true,                
+      }).init();
+    </script>
+
   </body>
 </html>
