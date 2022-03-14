@@ -86,5 +86,20 @@
 </div>
 
     <script src="assets/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+var str = '內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容';
+var i = 0;
+function typing(){
+var divTyping = document.getElementById('typing');
+if (i <= str.length) {
+divTyping.innerHTML = str.slice(0, i  )   '_';
+setTimeout('typing()', 200);
+}
+else{
+divTyping.innerHTML = str;
+}
+}
+typing();
+</script>
   </body>
 </html>
