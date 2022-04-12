@@ -7,7 +7,11 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.88.1">
     <title>就只是一個罐頭</title>
-
+<link rel="icon" href="./assets/ico/guantou (1).ico" type="image/x-icon" id='icon'/>
+    <script>
+      var x=Math.floor(Math.random()*(6-1+1))+1;
+      document.getElementById('icon').setAttribute('href',`./assets/ico/guantou (${x}).ico`);
+    </script>
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/cover/">
 
     <!-- Bootstrap core CSS -->
@@ -31,14 +35,14 @@
 
     
     <!-- Custom styles for this template -->
-    <link href="../cover.css" rel="stylesheet">
+
   </head>
   <body class="d-flex h-100 text-center text-white bg-dark">
     
 <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
   <header class="mb-auto">
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example">
-      <div class="container-fluid">
+    <nav class="navbar navbar-expand-sm navbar-dark" aria-label="Third navbar example">
+      <div class="container-md">
         <a class="navbar-brand" href="../index.html">就只是一個罐頭</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -49,26 +53,22 @@
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="../index.html">首頁</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="../CTF/index.html">CTF文章</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="../TECH/index.html">技術文章</a>
+            </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-bs-toggle="dropdown" aria-expanded="false">分類</a>
+              <a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-bs-toggle="dropdown" aria-expanded="false">Side Project</a>
               <ul class="dropdown-menu" aria-labelledby="dropdown03">
-                <li><a class="dropdown-item" href="../CTF/index.html">CTF文章</a></li>
-                <li><a class="dropdown-item" href="../TECH/index.html">技術文章</a></li>
-                <!--<li><a class="dropdown-item" href="#"></a></li>-->
+                <li><a class="dropdown-item" href="../STG/index.html">課表產生器</a></li>
               </ul>
             </li>
           </ul>
         </div>
       </div>
     </nav>
-    <!---<div>
-      <h3 class="float-md-start mb-0">就只是一個罐頭</h3>
-      <nav class="nav nav-masthead justify-content-center float-md-end">
-        <a class="nav-link active" aria-current="page" href="#">首頁</a>
-        <a class="nav-link" href="#">Features</a>
-        <a class="nav-link" href="#">Contact</a>
-      </nav>
-    </div>-->
   </header>
 
   <main class="px-3">
