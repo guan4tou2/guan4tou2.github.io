@@ -6,9 +6,9 @@ navbar='\
           <span class="navbar-toggler-icon"></span></button>\
         <div class="collapse navbar-collapse " id="navbarsExample03">\
           <ul class="navbar-nav me-auto mb-2 mb-sm-0">\
-            <li class="nav-item"><a class="nav-link active" aria-current="page" href="/index.html">首頁</a></li>\
-            <li class="nav-item"><a class="nav-link" aria-current="page" href="/CTF/index.html">CTF文章</a></li>\
-            <li class="nav-item"><a class="nav-link" aria-current="page" href="/TECH/index.html">技術文章</a></li>\
+            <li class="nav-item"><a class="nav-link" id="home" aria-current="page" href="/index.html">首頁</a></li>\
+            <li class="nav-item"><a class="nav-link" id="ctf" aria-current="page" href="/CTF/index.html">CTF文章</a></li>\
+            <li class="nav-item"><a class="nav-link" id="tech" aria-current="page" href="/TECH/index.html">技術文章</a></li>\
             <li class="nav-item dropdown">\
               <a class="nav-link dropdown-toggle" href="#" id="dropdown03" data-bs-toggle="dropdown" aria-expanded="false">Side Project</a>\
               <ul class="dropdown-menu" aria-labelledby="dropdown03">\

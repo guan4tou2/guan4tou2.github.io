@@ -42,12 +42,15 @@
 <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
   <header class="mb-auto">
     <script src="/assets/dist/js/navbar.js"></script>
+    <script>
+     document.getElementById('ctf').setAttribute('class',document.getElementById('ctf').className+' active')
+   </script>
   </header>
 
   <main class="px-3 ">
-    <!-- <script>document.getElementById('Cmarkdown').innerHTML = marked.parse(Cfiledata);</script> -->
     <link href="/assets/dist/css/accordion.css" rel="stylesheet">
-    <script src="/assets/dist/js/CTFaccordion.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="/CTF/CTFaccordion.js"></script>
   </main>
 
   <footer class="mt-auto text-white-50">

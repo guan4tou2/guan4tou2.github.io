@@ -8,6 +8,7 @@
 .accordion-item {
     background-color: #212529;
     border: 1px solid #c7c8c9;
+    text-align: left!important;
 }
 .accordion-button:not(.collapsed) {
     color: #ffffff;
