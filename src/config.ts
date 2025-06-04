@@ -7,9 +7,10 @@ import type {
 } from "./types/config";
 import { LinkPreset } from "./types/config";
 
+
 export const siteConfig: SiteConfig = {
 	title: "罐頭的網站",
-	subtitle: "就只是一個罐頭",
+	subtitle: "",
 	lang: "zh_TW", // 'en', 'zh_CN', 'zh_TW', 'ja', 'ko', 'es', 'th'
 	themeColor: {
 		hue: 250, // Default hue for the theme color, from 0 to 360. e.g. red: 0, teal: 200, cyan: 250, pink: 345
@@ -55,7 +56,7 @@ export const navBarConfig: NavBarConfig = {
 export const profileConfig: ProfileConfig = {
 	avatar: "assets/images/avatar.png", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
 	name: "罐頭",
-	bio: "目前就讀於北科資安所，is1ab 研究生，擅長藍隊技術",
+	bio: ["就只是一個罐頭","前端好難喔","我還是個學生"],
 	links: [
 		{
 			name: "is1ab",

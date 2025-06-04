@@ -1,9 +1,14 @@
 # About
-This is the demo site for [Fuwari](https://github.com/saicaca/fuwari).
 
-::github{repo="saicaca/fuwari"}
+從網管轉職過來的資安仔  
+會建立伺服器系統、環境、網路架構等  
+喜歡做一些沒什麼用，但是很酷的小專案  
 
-> ### Sources of images used in this site
-> - [Unsplash](https://unsplash.com/)
-> - [星と少女](https://www.pixiv.net/artworks/108916539) by [Stella](https://www.pixiv.net/users/93273965)
-> - [Rabbit - v1.4 Showcase](https://civitai.com/posts/586908) by [Rabbit_YourMajesty](https://civitai.com/user/Rabbit_YourMajesty)
+目前就讀北科資安碩士，is1ab 實驗室成員  
+
+擅長領域是藍隊，包含封包、記憶體、日誌分析等，也會一點事件回應，跟一點點網站滲透  
+還有**我不會逆向**
+
+<br></br>
+這是我很推薦的專案  
+::github{repo="guan4tou2/danmu-desktop"}
