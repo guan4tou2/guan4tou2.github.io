@@ -7,7 +7,6 @@ import type {
 } from "./types/config";
 import { LinkPreset } from "./types/config";
 
-
 export const siteConfig: SiteConfig = {
 	title: "罐頭的網站",
 	subtitle: "",
@@ -56,7 +55,7 @@ export const navBarConfig: NavBarConfig = {
 export const profileConfig: ProfileConfig = {
 	avatar: "assets/images/avatar.png", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
 	name: "罐頭",
-	bio: ["就只是一個罐頭","前端好難喔","我還是個學生"],
+	bio: ["就只是一個罐頭", "前端好難喔", "我還是個學生"],
 	links: [
 		{
 			name: "is1ab",
