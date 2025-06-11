@@ -14,7 +14,7 @@ lang: ''
 - factordb
 - sagemath
 - CoCalc
-- CryptoChef
+- CyberChef
 
 ## 常用到的 Python 函式庫
 - gmpy2
