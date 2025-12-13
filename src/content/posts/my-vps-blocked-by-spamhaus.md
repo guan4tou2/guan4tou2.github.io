@@ -46,7 +46,13 @@ Please provide details on how and when the issue was resolved *
 
 ![BCL submitted](/assets/images/BCL-submitted.png)
 
-送出後沒多久就看到伺服器可以進行 Terminate 了，不確定是因為 submit 的原因還是 kamatera 自己處理的比較久。
+送出後沒多久就看到伺服器可以進行 Terminate 了，不確定是因為 submit 的原因還是 kamatera 自己處理的比較久。  
+然後就到學校信箱收到回覆信件。
+
+![Spamhaus-reply](/assets/images/Spamhaus-reply.png)
+![Spamhaus-tickets](/assets/images/Spamhaus-tickets.png)
+
+剩下就等他的回覆什麼時候會解除，等解除後再進行更新。
 
 ## 查看出事原因
 
