@@ -58,6 +58,12 @@ Please provide details on how and when the issue was resolved *
 
 剩下就等他的回覆什麼時候會解除，等解除後再進行更新。
 
+### 更新
+其實蠻快的，過幾天就收到移除 IP 的消息了，之前有看到好幾個月都沒消息的，不知道是不是運氣好。
+
+![Spamhaus-update](/assets/images/Spamhaus-update.png)
+![Spamhaus-removed](/assets/images/Spamhaus-removed.png)
+
 ## 查看出事原因
 
 跟罪魁禍首討論了一下，原本懷疑是因為 C2 的惡意流量被偵測到，不過他說有使用 SSL。
