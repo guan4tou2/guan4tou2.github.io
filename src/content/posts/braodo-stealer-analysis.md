@@ -5,7 +5,7 @@ description: "一場從 EDR 告警開始的惡意軟體狩獵之旅，歷時八�
 image: ""
 tags: [Malware, Reverse Engineering, Threat Hunting, Python]
 category: "Security"
-draft: false
+draft: true
 lang: "zh-TW"
 ---
 
@@ -17,16 +17,17 @@ lang: "zh-TW"
 
 - [目錄](#目錄)
 - [事件起源：EDR 告警](#事件起源edr-告警)
+  - [時間軸（T0 起算）](#時間軸t0-起算)
 - [初步調查：追蹤感染源](#初步調查追蹤感染源)
 - [鑑識分析：還原攻擊流程](#鑑識分析還原攻擊流程)
   - [完整攻擊流程圖](#完整攻擊流程圖)
 - [反編譯 sup02.entrypoint：Braodo Stealer](#反編譯-sup02entrypointbraodo-stealer)
   - [Stage 1：解開 marshal](#stage-1解開-marshal)
   - [嘗試各種反編譯工具](#嘗試各種反編譯工具)
-    - [decompyle3 / uncompyle6](#decompyle3--uncompyle6)
-    - [pycdc](#pycdc)
-    - [unpyc37-3.10](#unpyc37-310)
-    - [PyLingual](#pylingual)
+  - [decompyle3 / uncompyle6](#decompyle3--uncompyle6)
+  - [pycdc](#pycdc)
+  - [unpyc37-3.10](#unpyc37-310)
+  - [PyLingual](#pylingual)
   - [Stage 2：手工反編譯](#stage-2手工反編譯)
   - [確認是 Braodo Stealer](#確認是-braodo-stealer)
 - [反編譯 zk.entrypoint：Process Hollowing](#反編譯-zkentrypointprocess-hollowing)
