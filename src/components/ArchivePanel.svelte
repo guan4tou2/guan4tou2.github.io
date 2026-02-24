@@ -5,8 +5,11 @@ import I18nKey from "../i18n/i18nKey";
 import { i18n } from "../i18n/translation";
 import { getPostUrlBySlug } from "../utils/url-utils";
 
+// biome-ignore lint/style/useConst: Svelte component props must be declared with let.
 export let tags: string[];
+// biome-ignore lint/style/useConst: Svelte component props must be declared with let.
 export let categories: string[];
+// biome-ignore lint/style/useConst: Svelte component props must be declared with let.
 export let sortedPosts: Post[] = [];
 
 const params = new URLSearchParams(window.location.search);

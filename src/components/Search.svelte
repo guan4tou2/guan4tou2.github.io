@@ -6,8 +6,8 @@ import Icon from "@iconify/svelte";
 import { url } from "@utils/url-utils.ts";
 import { onMount } from "svelte";
 
-let keywordDesktop = "";
-let keywordMobile = "";
+const keywordDesktop = "";
+const keywordMobile = "";
 let result: SearchResult[] = [];
 let isSearching = false;
 let pagefindLoaded = false;
