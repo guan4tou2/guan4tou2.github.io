@@ -5,10 +5,8 @@ import I18nKey from "../i18n/i18nKey";
 import { i18n } from "../i18n/translation";
 import { getPostUrlBySlug } from "../utils/url-utils";
 
-// biome-ignore lint/style/useConst: Svelte component props must be declared with let.
-export let tags: string[];
-// biome-ignore lint/style/useConst: Svelte component props must be declared with let.
-export let categories: string[];
+export let tags: string[] = [];
+export let categories: string[] = [];
 // biome-ignore lint/style/useConst: Svelte component props must be declared with let.
 export let sortedPosts: Post[] = [];
 
@@ -22,7 +20,7 @@ interface Post {
 	data: {
 		title: string;
 		tags: string[];
-		category?: string;
+		category?: string | null;
 		published: Date;
 	};
 }

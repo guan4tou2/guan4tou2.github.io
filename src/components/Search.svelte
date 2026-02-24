@@ -6,8 +6,10 @@ import Icon from "@iconify/svelte";
 import { url } from "@utils/url-utils.ts";
 import { onMount } from "svelte";
 
-const keywordDesktop = "";
-const keywordMobile = "";
+// biome-ignore lint/style/useConst: Svelte bind:value updates this variable.
+let keywordDesktop = "";
+// biome-ignore lint/style/useConst: Svelte bind:value updates this variable.
+let keywordMobile = "";
 let result: SearchResult[] = [];
 let isSearching = false;
 let pagefindLoaded = false;

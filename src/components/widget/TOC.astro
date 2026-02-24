@@ -27,7 +27,8 @@ const removeTailingHash = (text: string) => {
 	return text.substring(0, lastIndexOfHash);
 };
 
-const heading1Count = 1;
+// biome-ignore lint/style/useConst: value is incremented while rendering headings.
+let heading1Count = 1;
 
 const maxLevel = siteConfig.toc.depth;
 ---
