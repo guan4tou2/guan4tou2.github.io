@@ -1,0 +1,21 @@
+{
+	"$schema": "../../node_modules/wrangler/config-schema.json",
+	"name": "guan4tou2-blog-view-counter",
+	"main": "src/index.js",
+	"compatibility_date": "2026-07-03",
+	"workers_dev": true,
+	"observability": {
+		"enabled": true
+	},
+	"vars": {
+		"ALLOWED_ORIGINS": "https://blog.guan4tou2.com,http://localhost:4321,http://127.0.0.1:4321"
+	},
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "blog_view_counter",
+			"database_id": "ada452a4-cc1e-4816-b591-6b8ac59fdffb",
+			"migrations_dir": "migrations"
+		}
+	]
+}

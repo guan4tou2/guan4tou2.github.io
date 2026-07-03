@@ -1,0 +1,38 @@
+CREATE TABLE IF NOT EXISTS page_totals (
+	path TEXT PRIMARY KEY,
+	title TEXT,
+	views INTEGER NOT NULL DEFAULT 0,
+	created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX IF NOT EXISTS idx_page_totals_views
+	ON page_totals (views DESC, path ASC);
+
+CREATE TABLE IF NOT EXISTS page_daily (
+	path TEXT NOT NULL,
+	day TEXT NOT NULL,
+	views INTEGER NOT NULL DEFAULT 0,
+	updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	PRIMARY KEY (path, day)
+);
+
+CREATE INDEX IF NOT EXISTS idx_page_daily_day
+	ON page_daily (day DESC);
+
+CREATE TABLE IF NOT EXISTS page_hourly (
+	path TEXT NOT NULL,
+	hour TEXT NOT NULL,
+	views INTEGER NOT NULL DEFAULT 0,
+	updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	PRIMARY KEY (path, hour)
+);
+
+CREATE INDEX IF NOT EXISTS idx_page_hourly_hour
+	ON page_hourly (hour DESC);
+
+CREATE TABLE IF NOT EXISTS site_totals (
+	metric TEXT PRIMARY KEY,
+	value INTEGER NOT NULL DEFAULT 0,
+	updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);

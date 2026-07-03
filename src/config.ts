@@ -56,6 +56,10 @@ export const profileConfig: ProfileConfig = {
 	avatar: "assets/images/avatar.png", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
 	name: "罐頭",
 	bio: ["就只是一個罐頭", "前端好難喔", "我還是個學生"],
+	viewCounter: {
+		enable: true,
+		endpoint: "https://guan4tou2-blog-view-counter.mole30608.workers.dev/api/views",
+	},
 	links: [
 		{
 			name: "is1ab",

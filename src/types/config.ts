@@ -54,6 +54,10 @@ export type ProfileConfig = {
 	avatar?: string;
 	name: string;
 	bio?: string[];
+	viewCounter?: {
+		enable: boolean;
+		endpoint: string;
+	};
 	links: {
 		name: string;
 		url: string;

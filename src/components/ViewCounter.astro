@@ -1,0 +1,30 @@
+---
+import { Icon } from "astro-icon/components";
+import { profileConfig } from "../config";
+
+interface Props {
+	path: string;
+	title: string;
+	class?: string;
+}
+
+const { path, title } = Astro.props;
+const className = Astro.props.class;
+const counterConfig = profileConfig.viewCounter;
+const enabled = counterConfig?.enable && counterConfig.endpoint;
+---
+
+{enabled && (
+    <div
+        class:list={["flex items-center", className]}
+        data-view-counter
+        data-view-counter-endpoint={counterConfig.endpoint}
+        data-view-counter-path={path}
+        data-view-counter-title={title}
+    >
+        <div class="meta-icon">
+            <Icon name="material-symbols:visibility-outline-rounded" class="text-xl"></Icon>
+        </div>
+        <span class="text-50 text-sm font-medium" data-view-counter-value>瀏覽 --</span>
+    </div>
+)}
