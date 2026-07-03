@@ -128,101 +128,101 @@ Windows 順利更新後檢查 VMware，機器沒有問題，時間也快到了�
 我覺得社群評分的準確度比較高，不過有幾台反而是社群評分打太難的。
 
 
-| Linux     | 難度           | 社群評分         | 時間(hh:mm) | 
-| ----------------- | ------------ | ------------ | --------- | 
-| ClamAV        | easy         | Intermediate | 00:22     |     
-| Pelican       | Intermediate | Intermediate | 00:29     |     
-| Payday        | Intermediate | Intermediate | 01:03     |     
-| Snookums      | Intermediate | Intermediate | 01:44     |     
-| Bratarina     | easy         | Intermediate | 00:37     |     
-| Pebbles       | easy         | hard         | 02:05     |     
-| Nibbles       | Intermediate | Intermediate | 00:16     |     
-| Hetemit       | Intermediate | very hard    | 01:49     |     
-| ZenPhoto      | Intermediate | Intermediate | 00:26     |     
-| Nukem         | Intermediate | hard         | 01:35     |     
-| Cockpit       | Intermediate | Intermediate | 00:22     |     
-| Clue          | hard         | very hard    | 01:29     |     
-| Extplorer     | Intermediate | Intermediate | 01:26     |     
-| Postfish      | Intermediate | very hard    | 太麻煩       |     
-| Hawat         | easy         | very hard    | 01:34     |     
-| Walla         | Intermediate | Intermediate | 00:54     |     
-| PC            | Intermediate | Intermediate | 00:40     |    
-| Apex          | Intermediate | very hard    | 02:14     |     
-| Sorcerer      | Intermediate | Intermediate | 01:32     |     
-| Sybaris       | Intermediate | hard         | 01:06     |     
-| Peppo         | hard         | hard         | 00:51     |     
-| Hunit         | Intermediate | very hard    | 01:08     |     
-| Readys        | Intermediate | very hard    | 01:51     |     
-| Astronaut     | easy         | Intermediate | 00:21     |     
-| bullybox      | Intermediate | Intermediate | 01:12     |     
-| Marketing     | Intermediate | very hard    | 02:01     |     
-| Exfiltrated   | easy         | Intermediate | 00:57     |     
-| Fanatastic    | easy         | hard         | 01:47     |     
-| QuackerJack   | Intermediate | Intermediate | 00:43     |     
-| Wombo         | easy         | Intermediate | 00:17     |     
-| Flu           | Intermediate | Intermediate | 01:05     |     
-| Roquefort     | Intermediate | hard         | 01:46     |     
-| Levram        | easy         | easy         | 00:29     |     
-| MZEEAV        | Intermediate | Intermediate | 00:43     |     
-| LaVita        | Intermediate | hard         | 02:32     |     
-| Xposedapi     | intermediate | hard         | 02:42     |     
-| Zipper        | hard         | very hard    | 01:30     |     
-| Workaholic    | intermediate | hard         | 03:03     |    
-| Fired         | intermediate | hard         | 01:10     |     
-| Scrutiny      | intermediate | very hard    | 02:02     |     
-| SPX           | intermediate | very hard    | 01:26     |     
-| Vmdak         | intermediate | hard         | 01:14     |     
-| Mantis        | intermediate | very hard    | 02:15     |     
-| BitForge      | intermediate | very hard    | 02:16     |     
-| WallpaperHub  | intermediate | very hard    | 01:48     |     
-| Zab           | intermediate | hard         | 02:46     |     
-| SpiderSociety | intermediate | intermediate | 01:33     |     
-| Twiggy        | easy         | intermediate | 00:24     |     
-| Blackgate     | hard         | intermediate | 00:30     |     
-| Boolean       | intermediate | very hard    | 01:18     |     
-| Codo          | easy         | easy         | 00:55     |     
-| Crane         | intermediate | easy         | 00:14     |     
-| image         | intermediate | intermediate | 00:12     |     
-| law           | intermediate | intermediate | 00:11     |     
-| press         | intermediate | easy         | 00:25     |     
-| RubyDome      | easy         | intermediate | 01:02     |     
-| pyLoader      | intermediate | easy         | 00:10     |     
-| plum          | intermediate | intermediate | 00:44     |     
-| Jordak        | intermediate | easy         | 00:20     |     
-| Ochima        | intermediate | intermediate | 00:44     |     
-| CVE-2023-6019 | intermediate | easy         | 00:11     |     
-| Sea           | intermediate | intermediate | 01:21     |     
+| Linux     | 難度           | 社群評分         | 時間(hh\:mm) |
+| ----------------- | ------------ | ------------ | --------- |
+| ClamAV        | easy         | Intermediate | 00\:22     |
+| Pelican       | Intermediate | Intermediate | 00\:29     |
+| Payday        | Intermediate | Intermediate | 01\:03     |
+| Snookums      | Intermediate | Intermediate | 01\:44     |
+| Bratarina     | easy         | Intermediate | 00\:37     |
+| Pebbles       | easy         | hard         | 02\:05     |
+| Nibbles       | Intermediate | Intermediate | 00\:16     |
+| Hetemit       | Intermediate | very hard    | 01\:49     |
+| ZenPhoto      | Intermediate | Intermediate | 00\:26     |
+| Nukem         | Intermediate | hard         | 01\:35     |
+| Cockpit       | Intermediate | Intermediate | 00\:22     |
+| Clue          | hard         | very hard    | 01\:29     |
+| Extplorer     | Intermediate | Intermediate | 01\:26     |
+| Postfish      | Intermediate | very hard    | 太麻煩       |
+| Hawat         | easy         | very hard    | 01\:34     |
+| Walla         | Intermediate | Intermediate | 00\:54     |
+| PC            | Intermediate | Intermediate | 00\:40     |
+| Apex          | Intermediate | very hard    | 02\:14     |
+| Sorcerer      | Intermediate | Intermediate | 01\:32     |
+| Sybaris       | Intermediate | hard         | 01\:06     |
+| Peppo         | hard         | hard         | 00\:51     |
+| Hunit         | Intermediate | very hard    | 01\:08     |
+| Readys        | Intermediate | very hard    | 01\:51     |
+| Astronaut     | easy         | Intermediate | 00\:21     |
+| bullybox      | Intermediate | Intermediate | 01\:12     |
+| Marketing     | Intermediate | very hard    | 02\:01     |
+| Exfiltrated   | easy         | Intermediate | 00\:57     |
+| Fanatastic    | easy         | hard         | 01\:47     |
+| QuackerJack   | Intermediate | Intermediate | 00\:43     |
+| Wombo         | easy         | Intermediate | 00\:17     |
+| Flu           | Intermediate | Intermediate | 01\:05     |
+| Roquefort     | Intermediate | hard         | 01\:46     |
+| Levram        | easy         | easy         | 00\:29     |
+| MZEEAV        | Intermediate | Intermediate | 00\:43     |
+| LaVita        | Intermediate | hard         | 02\:32     |
+| Xposedapi     | intermediate | hard         | 02\:42     |
+| Zipper        | hard         | very hard    | 01\:30     |
+| Workaholic    | intermediate | hard         | 03\:03     |
+| Fired         | intermediate | hard         | 01\:10     |
+| Scrutiny      | intermediate | very hard    | 02\:02     |
+| SPX           | intermediate | very hard    | 01\:26     |
+| Vmdak         | intermediate | hard         | 01\:14     |
+| Mantis        | intermediate | very hard    | 02\:15     |
+| BitForge      | intermediate | very hard    | 02\:16     |
+| WallpaperHub  | intermediate | very hard    | 01\:48     |
+| Zab           | intermediate | hard         | 02\:46     |
+| SpiderSociety | intermediate | intermediate | 01\:33     |
+| Twiggy        | easy         | intermediate | 00\:24     |
+| Blackgate     | hard         | intermediate | 00\:30     |
+| Boolean       | intermediate | very hard    | 01\:18     |
+| Codo          | easy         | easy         | 00\:55     |
+| Crane         | intermediate | easy         | 00\:14     |
+| image         | intermediate | intermediate | 00\:12     |
+| law           | intermediate | intermediate | 00\:11     |
+| press         | intermediate | easy         | 00\:25     |
+| RubyDome      | easy         | intermediate | 01\:02     |
+| pyLoader      | intermediate | easy         | 00\:10     |
+| plum          | intermediate | intermediate | 00\:44     |
+| Jordak        | intermediate | easy         | 00\:20     |
+| Ochima        | intermediate | intermediate | 00\:44     |
+| CVE-2023-6019 | intermediate | easy         | 00\:11     |
+| Sea           | intermediate | intermediate | 01\:21     |
 
 | Windows                      | 難度           | 社群評分         | 時間        |
 | ------------------------------------- | ------------ | ------------ | --------- |
-| Kevin                             | easy         | easy         | 00:35     |
-| Internal                          | easy         | easy         | 00:52     |
-| algernon                          | easy         | easy         | 00:24     |
-| Jacko                             | Intermediate | hard         | 02:42     |
-| Craft                             | Intermediate | hard         | 02:03     |
-| Squid                             | easy         | hard         | 02:04     |
-| Nickel                            | Intermediate | hard         | 01:51     |
-| MedJed                            | Intermediate | hard         | 01:03     |
-| Billyboss                         | Intermediate | hard         | 01:08     |
-| Shenzi                            | Intermediate | hard         | 01:17     |
-| AuthBy                            | Intermediate | hard         | 02:26     |
-| Slort                             | Intermediate | Intermediate | 02:18     |
-| Hepet                             | Intermediate | very hard    | 02:04     |
-| DVR4                              | Intermediate | hard         | 01:23     |
-| Mice                              | easy         | hard         | 01:11     |
-| Monster                           | easy         | very hard    | 01:38     |
-| Fish                              | Intermediate | hard         | 01:38     |
-| Resourced                         | Intermediate | very hard    | 02:41     |
-| Hutch                             | Intermediate | hard         | 01:39     |
+| Kevin                             | easy         | easy         | 00\:35     |
+| Internal                          | easy         | easy         | 00\:52     |
+| algernon                          | easy         | easy         | 00\:24     |
+| Jacko                             | Intermediate | hard         | 02\:42     |
+| Craft                             | Intermediate | hard         | 02\:03     |
+| Squid                             | easy         | hard         | 02\:04     |
+| Nickel                            | Intermediate | hard         | 01\:51     |
+| MedJed                            | Intermediate | hard         | 01\:03     |
+| Billyboss                         | Intermediate | hard         | 01\:08     |
+| Shenzi                            | Intermediate | hard         | 01\:17     |
+| AuthBy                            | Intermediate | hard         | 02\:26     |
+| Slort                             | Intermediate | Intermediate | 02\:18     |
+| Hepet                             | Intermediate | very hard    | 02\:04     |
+| DVR4                              | Intermediate | hard         | 01\:23     |
+| Mice                              | easy         | hard         | 01\:11     |
+| Monster                           | easy         | very hard    | 01\:38     |
+| Fish                              | Intermediate | hard         | 01\:38     |
+| Resourced                         | Intermediate | very hard    | 02\:41     |
+| Hutch                             | Intermediate | hard         | 01\:39     |
 
-| Treat it like a small network | 難度           | 社群評分         | 時間(hh:mm) |
+| Treat it like a small network | 難度           | 社群評分         | 時間(hh\:mm) |
 | ------------------------------------- | ------------ | ------------ | --------- |
-| SkillForge                        | intermediate | very hard    | 02:57     |
+| SkillForge                        | intermediate | very hard    | 02\:57     |
 
-| Active Directory and Networks     | 難度           | 社群評分         | 時間(hh:mm) |
+| Active Directory and Networks     | 難度           | 社群評分         | 時間(hh\:mm) |
 | ------------------------------------- | ------------ | ------------ | --------- |
-| Access                            | intermediate | very hard    | 02:00     |
-| Nagoya                            | hard         | very hard    | 03:05     |
-| Hokkaido                          | intermediate | very hard    | 02:16     |
-| Vault                             | hard         | hard         | 01:57     |
-| Heist                             | hard         | very hard    | 01:23     |
+| Access                            | intermediate | very hard    | 02\:00     |
+| Nagoya                            | hard         | very hard    | 03\:05     |
+| Hokkaido                          | intermediate | very hard    | 02\:16     |
+| Vault                             | hard         | hard         | 01\:57     |
+| Heist                             | hard         | very hard    | 01\:23     |
