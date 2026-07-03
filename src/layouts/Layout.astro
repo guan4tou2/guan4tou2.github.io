@@ -154,6 +154,15 @@ const bannerOffset =
 		<ConfigCarrier></ConfigCarrier>
 		<slot />
 
+		<!-- Cloudflare Web Analytics -->
+		<script
+			is:inline
+			defer
+			src="https://static.cloudflareinsights.com/beacon.min.js"
+			data-cf-beacon='{"token": "69ceea5ca07244a1943695cb5bc65115", "spa": true}'
+		></script>
+		<!-- End Cloudflare Web Analytics -->
+
 		<!-- increase the page height during page transition to prevent the scrolling animation from jumping -->
 		<div id="page-height-extend" class="hidden h-[300vh]"></div>
 	</body>
