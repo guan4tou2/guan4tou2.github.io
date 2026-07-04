@@ -235,6 +235,14 @@ async function incrementView(request, env, options) {
 		nowIso: now.toISOString(),
 	});
 
+	if (env.AE) {
+		env.AE.writeDataPoint({
+			blobs: [path, result.title || ""],
+			doubles: [Number(result.views || 0)],
+			indexes: [path],
+		});
+	}
+
 	return json(
 		{
 			path: result.path,
