@@ -58,7 +58,7 @@ export const profileConfig: ProfileConfig = {
 	bio: ["就只是一個罐頭", "前端好難喔", "我還是個學生"],
 	viewCounter: {
 		enable: true,
-		endpoint: "https://guan4tou2-blog-view-counter.mole30608.workers.dev/api/views",
+		endpoint: "https://counter.guan4tou2.com/api/views",
 	},
 	links: [
 		{

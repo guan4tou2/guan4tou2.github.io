@@ -3,13 +3,25 @@
 	"name": "guan4tou2-blog-view-counter",
 	"main": "src/index.js",
 	"compatibility_date": "2026-07-03",
-	"workers_dev": true,
+	"workers_dev": false,
+	"routes": [
+		{
+			"pattern": "counter.guan4tou2.com",
+			"custom_domain": true
+		}
+	],
 	"observability": {
 		"enabled": true
 	},
 	"vars": {
 		"ALLOWED_ORIGINS": "https://blog.guan4tou2.com,http://localhost:4321,http://127.0.0.1:4321"
 	},
+	"analytics_engine_datasets": [
+		{
+			"binding": "AE",
+			"dataset": "blog_views"
+		}
+	],
 	"d1_databases": [
 		{
 			"binding": "DB",
