@@ -8,6 +8,7 @@
     "check": "astro check",
     "build": "astro build && pagefind --site dist",
     "test:counter": "node --test workers/view-counter/test/counter.test.mjs",
+    "test:view-counter-client": "node --test src/utils/view-counter-layout.test.mjs",
     "preview": "astro preview",
     "astro": "astro",
     "type-check": "tsc --noEmit --isolatedDeclarations",

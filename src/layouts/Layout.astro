@@ -169,6 +169,22 @@ const bannerOffset =
 					return new Intl.NumberFormat("zh-TW").format(count);
 				};
 
+				const setViewCount = (valueElement, value) => {
+					valueElement.textContent = `瀏覽 ${formatCount(value)}`;
+				};
+
+				const fetchCurrentViews = async (endpoint, path) => {
+					const url = new URL(endpoint, window.location.href);
+					url.searchParams.set("path", path);
+					const response = await fetch(url.toString(), {
+						method: "GET",
+						credentials: "omit",
+					});
+
+					if (!response.ok) throw new Error(`Counter read failed: ${response.status}`);
+					return response.json();
+				};
+
 				const waitForTurnstile = () => new Promise((resolve, reject) => {
 					if (window.turnstile) {
 						resolve(window.turnstile);
@@ -203,16 +219,23 @@ const bannerOffset =
 
 					return new Promise((resolve, reject) => {
 						let settled = false;
+						let widgetId;
 						const finish = (callback) => {
 							if (settled) return;
 							settled = true;
 							callback();
 						};
+						const removeWidget = () => {
+							if (widgetId) {
+								turnstile.remove?.(widgetId);
+							}
+						};
 						const timeout = window.setTimeout(() => {
+							removeWidget();
 							finish(() => reject(new Error("Turnstile timed out")));
 						}, 10000);
 
-						const widgetId = turnstile.render(container, {
+						widgetId = turnstile.render(container, {
 							sitekey,
 							action: "view-counter",
 							theme: "auto",
@@ -224,16 +247,24 @@ const bannerOffset =
 								window.clearTimeout(timeout);
 								finish(() => resolve({ token, widgetId }));
 							},
+							"before-interactive-callback": () => {
+								window.clearTimeout(timeout);
+								removeWidget();
+								finish(() => reject(new Error("Turnstile interaction required")));
+							},
 							"error-callback": () => {
 								window.clearTimeout(timeout);
+								removeWidget();
 								finish(() => reject(new Error("Turnstile error")));
 							},
 							"expired-callback": () => {
 								window.clearTimeout(timeout);
+								removeWidget();
 								finish(() => reject(new Error("Turnstile expired")));
 							},
 							"timeout-callback": () => {
 								window.clearTimeout(timeout);
+								removeWidget();
 								finish(() => reject(new Error("Turnstile challenge timed out")));
 							},
 						});
@@ -270,13 +301,18 @@ const bannerOffset =
 
 							if (!response.ok) throw new Error(`Counter failed: ${response.status}`);
 							const data = await response.json();
-							valueElement.textContent = `瀏覽 ${formatCount(data.views)}`;
+							setViewCount(valueElement, data.views);
 							if (turnstileResult?.widgetId) {
 								window.turnstile?.remove?.(turnstileResult.widgetId);
 							}
 						} catch {
-							valueElement.textContent = "瀏覽 --";
-							element.dataset.viewCounterError = "true";
+							try {
+								const data = await fetchCurrentViews(endpoint, path);
+								setViewCount(valueElement, data.views);
+							} catch {
+								valueElement.textContent = "瀏覽 --";
+								element.dataset.viewCounterError = "true";
+							}
 						}
 					});
 				};
