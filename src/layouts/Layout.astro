@@ -149,7 +149,6 @@ const bannerOffset =
 			<script
 				is:inline
 				src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
-				async
 				defer
 			></script>
 		)}
@@ -185,7 +184,7 @@ const bannerOffset =
 						}
 
 						attempts += 1;
-						if (attempts >= 100) {
+						if (attempts >= 300) {
 							window.clearInterval(timer);
 							reject(new Error("Turnstile failed to load"));
 						}
