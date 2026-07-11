@@ -1,6 +1,6 @@
+import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
-import assert from "node:assert/strict";
 
 const workflow = readFileSync(".github/workflows/cloudflare-pages.yml", "utf8");
 
@@ -16,5 +16,8 @@ test("deploys the static build to Cloudflare Pages", () => {
 test("skips deployment when the Cloudflare API token secret is not configured", () => {
 	assert.match(workflow, /secrets\.CLOUDFLARE_API_TOKEN/);
 	assert.match(workflow, /has_token=false/);
-	assert.match(workflow, /steps\.cloudflare_token\.outputs\.has_token == 'true'/);
+	assert.match(
+		workflow,
+		/steps\.cloudflare_token\.outputs\.has_token == 'true'/,
+	);
 });
