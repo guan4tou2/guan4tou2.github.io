@@ -346,9 +346,15 @@ describe("view counter worker", () => {
 		await post("/posts/other/", "Other", new Date("2026-07-03T17:00:00Z"));
 
 		const page = await handleRequest(
-			new Request("https://counter.example.com/api/views?path=/posts/oscp-journey/"),
+			new Request("https://counter.example.com/api/views?path=/posts/oscp-journey/", {
+				headers: { origin: "https://blog.guan4tou2.com" },
+			}),
 			env,
 			{ store },
+		);
+		assert.equal(
+			page.headers.get("access-control-allow-origin"),
+			"https://blog.guan4tou2.com",
 		);
 		assert.deepEqual(await page.json(), {
 			path: "/posts/oscp-journey/",
@@ -357,9 +363,15 @@ describe("view counter worker", () => {
 		});
 
 		const rank = await handleRequest(
-			new Request("https://counter.example.com/api/views/rank?limit=2"),
+			new Request("https://counter.example.com/api/views/rank?limit=2", {
+				headers: { origin: "https://blog.guan4tou2.com" },
+			}),
 			env,
 			{ store },
+		);
+		assert.equal(
+			rank.headers.get("access-control-allow-origin"),
+			"https://blog.guan4tou2.com",
 		);
 		assert.deepEqual(await rank.json(), {
 			results: [
@@ -371,9 +383,14 @@ describe("view counter worker", () => {
 		const series = await handleRequest(
 			new Request(
 				"https://counter.example.com/api/views/series?path=/posts/oscp-journey/&bucket=hourly&days=1",
+				{ headers: { origin: "https://blog.guan4tou2.com" } },
 			),
 			env,
 			{ store },
+		);
+		assert.equal(
+			series.headers.get("access-control-allow-origin"),
+			"https://blog.guan4tou2.com",
 		);
 		assert.deepEqual(await series.json(), {
 			path: "/posts/oscp-journey/",

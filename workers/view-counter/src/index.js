@@ -40,15 +40,15 @@ export async function handleRequest(request, env = {}, options = {}) {
 		}
 
 		if (url.pathname === "/api/views" && request.method === "GET") {
-			return await readPageView(url, env, options);
+			return await readPageView(request, url, env, options);
 		}
 
 		if (url.pathname === "/api/views/rank" && request.method === "GET") {
-			return await readRank(url, env, options);
+			return await readRank(request, url, env, options);
 		}
 
 		if (url.pathname === "/api/views/series" && request.method === "GET") {
-			return await readSeries(url, env, options);
+			return await readSeries(request, url, env, options);
 		}
 
 		return json({ error: "Not found" }, 404, origin, env);
@@ -327,7 +327,7 @@ function createIdempotencyKey() {
 	return `${Date.now()}-${Math.random().toString(16).slice(2)}`;
 }
 
-async function readPageView(url, env, options) {
+async function readPageView(request, url, env, options) {
 	const path = normalizePath(url.searchParams.get("path"));
 	const result = await getStore(env, options).getPage(path);
 	return json(
@@ -337,25 +337,25 @@ async function readPageView(url, env, options) {
 			views: Number(result.views || 0),
 		},
 		200,
-		null,
+		request.headers.get("origin"),
 		env,
 	);
 }
 
-async function readRank(url, env, options) {
+async function readRank(request, url, env, options) {
 	const limit = parseLimit(url.searchParams.get("limit"), MAX_RANK_LIMIT, 10);
 	const prefix = normalizePrefix(url.searchParams.get("prefix") || "/posts/");
 	const results = await getStore(env, options).getRank({ limit, prefix });
-	return json({ results }, 200, null, env);
+	return json({ results }, 200, request.headers.get("origin"), env);
 }
 
-async function readSeries(url, env, options) {
+async function readSeries(request, url, env, options) {
 	const path = normalizePath(url.searchParams.get("path"));
 	const bucket = url.searchParams.get("bucket") === "hourly" ? "hourly" : "daily";
 	const days = parseLimit(url.searchParams.get("days"), MAX_SERIES_DAYS, 30);
 	const limit = bucket === "hourly" ? days * 24 : days;
 	const results = await getStore(env, options).getSeries({ path, bucket, limit });
-	return json({ path, bucket, results }, 200, null, env);
+	return json({ path, bucket, results }, 200, request.headers.get("origin"), env);
 }
 
 async function readJson(request) {
