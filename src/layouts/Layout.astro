@@ -145,6 +145,15 @@ const bannerOffset =
 
 		<slot name="head"></slot>
 
+		{profileConfig.viewCounter?.turnstileSiteKey && (
+			<script
+				is:inline
+				src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
+				async
+				defer
+			></script>
+		)}
+
 		<link rel="alternate" type="application/rss+xml" title={profileConfig.name} href={`${Astro.site}rss.xml`}/>
 
 	</head>
@@ -161,6 +170,79 @@ const bannerOffset =
 					return new Intl.NumberFormat("zh-TW").format(count);
 				};
 
+				const waitForTurnstile = () => new Promise((resolve, reject) => {
+					if (window.turnstile) {
+						resolve(window.turnstile);
+						return;
+					}
+
+					let attempts = 0;
+					const timer = window.setInterval(() => {
+						if (window.turnstile) {
+							window.clearInterval(timer);
+							resolve(window.turnstile);
+							return;
+						}
+
+						attempts += 1;
+						if (attempts >= 100) {
+							window.clearInterval(timer);
+							reject(new Error("Turnstile failed to load"));
+						}
+					}, 100);
+				});
+
+				const getTurnstileToken = async (element) => {
+					const sitekey = element.dataset.viewCounterTurnstileSiteKey;
+					if (!sitekey) return null;
+
+					const turnstile = await waitForTurnstile();
+					const container = element.querySelector("[data-view-counter-turnstile]");
+					if (!(container instanceof HTMLElement)) {
+						throw new Error("Turnstile container missing");
+					}
+
+					return new Promise((resolve, reject) => {
+						let settled = false;
+						const finish = (callback) => {
+							if (settled) return;
+							settled = true;
+							callback();
+						};
+						const timeout = window.setTimeout(() => {
+							finish(() => reject(new Error("Turnstile timed out")));
+						}, 10000);
+
+						const widgetId = turnstile.render(container, {
+							sitekey,
+							action: "view-counter",
+							theme: "auto",
+							size: "compact",
+							execution: "execute",
+							appearance: "interaction-only",
+							"response-field": false,
+							callback: (token) => {
+								window.clearTimeout(timeout);
+								finish(() => resolve({ token, widgetId }));
+							},
+							"error-callback": () => {
+								window.clearTimeout(timeout);
+								finish(() => reject(new Error("Turnstile error")));
+							},
+							"expired-callback": () => {
+								window.clearTimeout(timeout);
+								finish(() => reject(new Error("Turnstile expired")));
+							},
+							"timeout-callback": () => {
+								window.clearTimeout(timeout);
+								finish(() => reject(new Error("Turnstile challenge timed out")));
+							},
+						});
+
+						turnstile.execute(container);
+					});
+				};
+
 				const initViewCounters = () => {
 					document.querySelectorAll("[data-view-counter]").forEach(async (element) => {
 						if (!(element instanceof HTMLElement)) return;
@@ -175,16 +257,24 @@ const bannerOffset =
 						element.dataset.viewCounterLoaded = "true";
 
 						try {
+							const turnstileResult = await getTurnstileToken(element);
 							const response = await fetch(endpoint, {
 								method: "POST",
 								headers: { "content-type": "application/json" },
-								body: JSON.stringify({ path, title }),
+								body: JSON.stringify({
+									path,
+									title,
+									turnstileToken: turnstileResult?.token,
+								}),
 								credentials: "omit",
 							});
 
 							if (!response.ok) throw new Error(`Counter failed: ${response.status}`);
 							const data = await response.json();
 							valueElement.textContent = `瀏覽 ${formatCount(data.views)}`;
+							if (turnstileResult?.widgetId) {
+								window.turnstile?.remove?.(turnstileResult.widgetId);
+							}
 						} catch {
 							valueElement.textContent = "瀏覽 --";
 							element.dataset.viewCounterError = "true";

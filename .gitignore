@@ -21,6 +21,8 @@ pnpm-debug.log*
 .DS_Store
 
 .vercel
+.playwright-cli/
+.playwright-mcp/
 
 package-lock.json
 bun.lockb

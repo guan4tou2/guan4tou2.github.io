@@ -57,6 +57,7 @@ export type ProfileConfig = {
 	viewCounter?: {
 		enable: boolean;
 		endpoint: string;
+		turnstileSiteKey?: string;
 	};
 	links: {
 		name: string;

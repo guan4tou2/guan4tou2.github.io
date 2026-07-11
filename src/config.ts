@@ -59,6 +59,7 @@ export const profileConfig: ProfileConfig = {
 	viewCounter: {
 		enable: true,
 		endpoint: "https://counter.guan4tou2.com/api/views",
+		turnstileSiteKey: "0x4AAAAAADzs6r6B4maZCNZL",
 	},
 	links: [
 		{

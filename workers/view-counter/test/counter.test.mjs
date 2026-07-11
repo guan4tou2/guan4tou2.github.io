@@ -170,6 +170,99 @@ describe("view counter worker", () => {
 		assert.equal(response.status, 403);
 	});
 
+	it("requires Turnstile token when a secret is configured", async () => {
+		const store = createMemoryStore();
+		const response = await handleRequest(
+			new Request("https://counter.example.com/api/views", {
+				method: "POST",
+				headers: {
+					"content-type": "application/json",
+					origin: "https://blog.guan4tou2.com",
+				},
+				body: JSON.stringify({ path: "/posts/oscp-journey/" }),
+			}),
+			{ ...env, TURNSTILE_SECRET_KEY: "secret" },
+			{ store },
+		);
+
+		assert.equal(response.status, 403);
+		assert.equal((await store.getPage("/posts/oscp-journey/")).views, 0);
+	});
+
+	it("rejects failed Turnstile verification without incrementing", async () => {
+		const store = createMemoryStore();
+		const response = await handleRequest(
+			new Request("https://counter.example.com/api/views", {
+				method: "POST",
+				headers: {
+					"content-type": "application/json",
+					origin: "https://blog.guan4tou2.com",
+					"cf-connecting-ip": "203.0.113.10",
+				},
+				body: JSON.stringify({
+					path: "/posts/oscp-journey/",
+					turnstileToken: "bad-token",
+				}),
+			}),
+			{ ...env, TURNSTILE_SECRET_KEY: "secret" },
+			{
+				store,
+				verifyTurnstile: async ({ token, remoteIp }) => {
+					assert.equal(token, "bad-token");
+					assert.equal(remoteIp, "203.0.113.10");
+					return { success: false, errors: ["invalid-input-response"] };
+				},
+			},
+		);
+
+		assert.equal(response.status, 403);
+		assert.deepEqual(await response.json(), {
+			error: "Turnstile verification failed",
+		});
+		assert.equal((await store.getPage("/posts/oscp-journey/")).views, 0);
+	});
+
+	it("increments only after successful Turnstile verification", async () => {
+		const store = createMemoryStore();
+		let verificationCalls = 0;
+		const response = await handleRequest(
+			new Request("https://counter.example.com/api/views", {
+				method: "POST",
+				headers: {
+					"content-type": "application/json",
+					origin: "https://blog.guan4tou2.com",
+					"cf-connecting-ip": "203.0.113.10",
+				},
+				body: JSON.stringify({
+					path: "/posts/oscp-journey/",
+					title: "OSCP Journey",
+					turnstileToken: "ok-token",
+				}),
+			}),
+			{ ...env, TURNSTILE_SECRET_KEY: "secret" },
+			{
+				store,
+				now: new Date("2026-07-03T15:00:00Z"),
+				verifyTurnstile: async ({ token, secret, remoteIp }) => {
+					verificationCalls += 1;
+					assert.equal(token, "ok-token");
+					assert.equal(secret, "secret");
+					assert.equal(remoteIp, "203.0.113.10");
+					return { success: true };
+				},
+			},
+		);
+
+		assert.equal(response.status, 200);
+		assert.equal(verificationCalls, 1);
+		assert.deepEqual(await response.json(), {
+			path: "/posts/oscp-journey/",
+			title: "OSCP Journey",
+			views: 1,
+			siteViews: 1,
+		});
+	});
+
 	it("returns page totals, rankings, and time series", async () => {
 		const store = createMemoryStore();
 		const post = async (path, title, now) =>

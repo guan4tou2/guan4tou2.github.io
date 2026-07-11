@@ -12,6 +12,7 @@ const { path, title } = Astro.props;
 const className = Astro.props.class;
 const counterConfig = profileConfig.viewCounter;
 const enabled = counterConfig?.enable && counterConfig.endpoint;
+const turnstileSiteKey = counterConfig?.turnstileSiteKey;
 ---
 
 {enabled && (
@@ -21,10 +22,14 @@ const enabled = counterConfig?.enable && counterConfig.endpoint;
         data-view-counter-endpoint={counterConfig.endpoint}
         data-view-counter-path={path}
         data-view-counter-title={title}
+        data-view-counter-turnstile-site-key={turnstileSiteKey}
     >
         <div class="meta-icon">
             <Icon name="material-symbols:visibility-outline-rounded" class="text-xl"></Icon>
         </div>
         <span class="text-50 text-sm font-medium" data-view-counter-value>瀏覽 --</span>
+        {turnstileSiteKey && (
+            <span class="ml-2" data-view-counter-turnstile></span>
+        )}
     </div>
 )}

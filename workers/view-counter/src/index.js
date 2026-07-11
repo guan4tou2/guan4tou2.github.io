@@ -224,6 +224,12 @@ async function incrementView(request, env, options) {
 	const body = await readJson(request);
 	const path = normalizePath(body.path);
 	const title = normalizeTitle(body.title);
+	await verifyTurnstileToken({
+		token: body.turnstileToken,
+		request,
+		env,
+		options,
+	});
 	const now = options.now || new Date();
 	const { day, hour } = getTaipeiBuckets(now);
 	const store = getStore(env, options);
@@ -254,6 +260,61 @@ async function incrementView(request, env, options) {
 		request.headers.get("origin"),
 		env,
 	);
+}
+
+async function verifyTurnstileToken({ token, request, env, options }) {
+	const secret = env.TURNSTILE_SECRET_KEY || env.TURNSTILE_SECRET;
+	if (!secret) return;
+
+	if (typeof token !== "string" || token.trim() === "") {
+		throw new CounterError("Turnstile verification failed", 403);
+	}
+
+	const remoteIp = request.headers.get("CF-Connecting-IP") || undefined;
+	const verify = options.verifyTurnstile || verifyTurnstileWithCloudflare;
+	const result = await verify({
+		token: token.trim(),
+		secret,
+		remoteIp,
+		request,
+	});
+
+	if (!result?.success) {
+		throw new CounterError("Turnstile verification failed", 403);
+	}
+}
+
+async function verifyTurnstileWithCloudflare({ token, secret, remoteIp }) {
+	const payload = {
+		secret,
+		response: token,
+		idempotency_key: createIdempotencyKey(),
+	};
+	if (remoteIp) {
+		payload.remoteip = remoteIp;
+	}
+
+	const response = await fetch(
+		"https://challenges.cloudflare.com/turnstile/v0/siteverify",
+		{
+			method: "POST",
+			headers: { "content-type": "application/json" },
+			body: JSON.stringify(payload),
+		},
+	);
+
+	if (!response.ok) {
+		return { success: false };
+	}
+
+	return response.json();
+}
+
+function createIdempotencyKey() {
+	if (globalThis.crypto?.randomUUID) {
+		return globalThis.crypto.randomUUID();
+	}
+	return `${Date.now()}-${Math.random().toString(16).slice(2)}`;
 }
 
 async function readPageView(url, env, options) {
