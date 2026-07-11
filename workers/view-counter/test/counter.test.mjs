@@ -222,6 +222,64 @@ describe("view counter worker", () => {
 		assert.equal((await store.getPage("/posts/oscp-journey/")).views, 0);
 	});
 
+	it("rejects Turnstile tokens issued for another hostname", async () => {
+		const store = createMemoryStore();
+		const response = await handleRequest(
+			new Request("https://counter.example.com/api/views", {
+				method: "POST",
+				headers: {
+					"content-type": "application/json",
+					origin: "https://blog.guan4tou2.com",
+				},
+				body: JSON.stringify({
+					path: "/posts/oscp-journey/",
+					turnstileToken: "wrong-host-token",
+				}),
+			}),
+			{ ...env, TURNSTILE_SECRET_KEY: "secret" },
+			{
+				store,
+				verifyTurnstile: async () => ({
+					success: true,
+					hostname: "evil.example",
+					action: "view-counter",
+				}),
+			},
+		);
+
+		assert.equal(response.status, 403);
+		assert.equal((await store.getPage("/posts/oscp-journey/")).views, 0);
+	});
+
+	it("rejects Turnstile tokens issued for another action", async () => {
+		const store = createMemoryStore();
+		const response = await handleRequest(
+			new Request("https://counter.example.com/api/views", {
+				method: "POST",
+				headers: {
+					"content-type": "application/json",
+					origin: "https://blog.guan4tou2.com",
+				},
+				body: JSON.stringify({
+					path: "/posts/oscp-journey/",
+					turnstileToken: "wrong-action-token",
+				}),
+			}),
+			{ ...env, TURNSTILE_SECRET_KEY: "secret" },
+			{
+				store,
+				verifyTurnstile: async () => ({
+					success: true,
+					hostname: "blog.guan4tou2.com",
+					action: "comment-form",
+				}),
+			},
+		);
+
+		assert.equal(response.status, 403);
+		assert.equal((await store.getPage("/posts/oscp-journey/")).views, 0);
+	});
+
 	it("increments only after successful Turnstile verification", async () => {
 		const store = createMemoryStore();
 		let verificationCalls = 0;
@@ -248,7 +306,11 @@ describe("view counter worker", () => {
 					assert.equal(token, "ok-token");
 					assert.equal(secret, "secret");
 					assert.equal(remoteIp, "203.0.113.10");
-					return { success: true };
+					return {
+						success: true,
+						hostname: "blog.guan4tou2.com",
+						action: "view-counter",
+					};
 				},
 			},
 		);

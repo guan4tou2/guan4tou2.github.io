@@ -8,6 +8,8 @@ const MAX_PATH_LENGTH = 512;
 const MAX_TITLE_LENGTH = 200;
 const MAX_RANK_LIMIT = 50;
 const MAX_SERIES_DAYS = 90;
+const DEFAULT_TURNSTILE_HOSTNAME = "blog.guan4tou2.com";
+const DEFAULT_TURNSTILE_ACTION = "view-counter";
 
 export default {
 	fetch: handleRequest,
@@ -279,9 +281,17 @@ async function verifyTurnstileToken({ token, request, env, options }) {
 		request,
 	});
 
-	if (!result?.success) {
+	if (!isAllowedTurnstileResult(result, env)) {
 		throw new CounterError("Turnstile verification failed", 403);
 	}
+}
+
+function isAllowedTurnstileResult(result, env) {
+	if (!result?.success) return false;
+
+	const expectedHostname = env.TURNSTILE_EXPECTED_HOSTNAME || DEFAULT_TURNSTILE_HOSTNAME;
+	const expectedAction = env.TURNSTILE_EXPECTED_ACTION || DEFAULT_TURNSTILE_ACTION;
+	return result.hostname === expectedHostname && result.action === expectedAction;
 }
 
 async function verifyTurnstileWithCloudflare({ token, secret, remoteIp }) {
